@@ -16,15 +16,15 @@
 
 J'ai utilisé une VM Debian 12 sur virtual box avec un réseau en accès par pont.
 
-Avant de commencer effectuer une mise à jour avec la commande suivante :
+Avant de commencer, effectuez une mise à jour avec la commande suivante :
 
     sudo apt-get update && sudo apt-get upgrade -y  
     
-Ensuite installer le servive apache 2 avec la commande suivante :  
+Ensuite, installez le servive apache 2 avec la commande suivante :  
 
     sudo apt-get install apache2 -y  
 
-Afin de me connecter a mon serveur apache, je regarde mon ip avec la commande suivante :
+Afin de me connecter à mon serveur Apache, je vérifie mon ip avec la commande suivante :
 
     ip a  
 
@@ -42,17 +42,17 @@ Mon IP est donc 172.16.10.1/24
 
 2 Configuration logging :
 
-Pour modifier le logging il faudra modifier le fichier suivant :  
+Pour modifier le logging il faut modifier le fichier suivant :  
 
     /etc/apache2/apache2.conf  
 
 3 Trafic :
 
-Nous allons maintenant générer du trafic via notre VM principale en 172.16.10.1 et une seconde VM en 172.16.10.2 en passant par un navigateur web avec pour recherche l'ip du serveur apache2 (172.16.10.1)
+Nous allons maintenant générer du trafic via notre VM principale (172.16.10.1) et une seconde VM (172.16.10.2) en passant par un navigateur web. Dans celui-ci, nous cherchons l'adresse IP du serveur Apache2 : 172.16.10.1  
 
 4 Analyse des logs :
 
-Suite au trafic effectuer, nous analysons les logs qui se trouve dans le fichier access.log, voici la commande a effectuer :
+Suite au trafic effectué, nous analysons les logs qui se trouve dans le fichier access.log. Voici la commande à exécuter :
 
     cat /var/log/apache2/access.log  
 
@@ -70,7 +70,7 @@ root@Debian12:/var/log/apache2# cat access.log
 172.16.10.2 - - [06/Jan/2025:11:19:08 +0100] "GET /toto HTTP/1.1" 404 490 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"
 ```
 
-On remarque plusieurs trafic effectuer depuis deux adresses IP différente.
+On remarque plusieurs trafic effectués depuis deux adresses IP différentes.
 
 Nous allons maintenant filtrer les requêtes réussies et les erreurs avec la commande ``grep``
 
